@@ -1,0 +1,38 @@
+ng-app是告诉程序这里是angularJS的程序入口，从html这里开始有angularJS来管理，
+	如果只想页面一部分使用angulaJS来管理的话，就在页面的那个元素上面去使用
+	ng-app指令 这就是angulajs的灵活指出，不过我们一般在html里面写
+	注意：暂时我们不要先给ng-app指定名字 如果指定的话会报错
+	Uncaught Error: [$injector:modulerr]
+	
+
+ng-init: 是声明一些全局变量（在angulage中的变量）
+		是以键值对德方式 如果同时声明多个变量的话 中间用分号 ；隔开
+		angularJS和原生js不同的是，最后一次修改的变量
+		所用到的这个变量的地方都会改变 因为angularJS是等页面
+		全部渲染完毕后 在计算这些变量的
+		
+{{}}语法和ng-bind实现功能一模一样 但是{{}}需要在
+	angularJS文件加载完后使用，否则会出现闪现效果，影响用户体验
+	
+导入某个文件 注意:需要加引号 ''否则不会生效 列子：ng-include="'./footer.html'"
+
+ng-controller:这里是指控制器所管理的范围，这个控制器的名字叫MainCtrl,
+	注意：这里指定后，下面一定要生成该控制器，否则会 报错
+	创建主入口实例
+			myApp是ng-app的值,[]是依赖列表
+			var app=angular.module("myApp",[]);
+			使用依赖注入的原理注入$scope,才可以使用
+			.controller('MainCtrl',['$scope','$rootScope',function($scope,$rootScope){
+//			$scope 对象就代表了这个作用域的数据实体
+			$scope.name="素素";
+			给 全局作用域绑定某个变量，任何控制器下都可以访问到
+			$rootScope.userName="白浅浅";
+
+MainCtrl as ctrl 这个是给MainCtrl这个控制器起了一个别名ctrl
+	这个ctrl就是这个控制器的实例，使用的时候就可以ctrl.变量 即可，原理其实和$scope一样
+	
+继承作用域符合 JavaScript 的原型继承机制，这意味着如果我们在子作用域中访问一个父作用域中定义的属性，
+JavaScript 首先在子作用域中寻找该属性，没找到再从原型链上的父作用域中寻找，如果还没找到会再往上一级原型链的父作用域寻找。在 AngularJS 中，作用域原型链的顶端是$rootScope，AnguarJS 将会寻找到$rootScope 为止，
+如果还是找不到，则会返回 undefined。子作用域有实例数据对象，则不访问父作用域。
+
+ng-repeat: for..in的语法 for ..of的功能
