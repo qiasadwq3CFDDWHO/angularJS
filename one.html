@@ -36,3 +36,35 @@ JavaScript 首先在子作用域中寻找该属性，没找到再从原型链上
 如果还是找不到，则会返回 undefined。子作用域有实例数据对象，则不访问父作用域。
 
 ng-repeat: for..in的语法 for ..of的功能
+
+货币格式化处理 ctrl.money | currency  $12.233.00  ctrl.money | currency : '￥‘以人民币形式显示
+
+字母大小写转换
+str | uppercase 转换成大写 STR | lowercase 转换成小写
+
+限制显示长度
+str | limitTo : 2 只显示2个
+
+给数字设置千分位
+1243243 | number 
+321.323 | number : 2 保留小数后俩位 会自动四舍五入
+
+日期格式化处理
+ctrl.data | data : 'yyyy-MM-dd hh:mm:ss EEEE'
+
+数组中无对象排序
+默认是升序排序
+arr | orderBy
+降序需要添加order : true 
+arr | orderBy : order : true
+
+数组中有对象的排序（排序的是对象的某个属性）
+ctrl.persons | orderBy : 'age"
+
+JSON格式转换
+ctrl.person | json
+
+
+
+
+
