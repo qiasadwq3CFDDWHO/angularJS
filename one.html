@@ -64,6 +64,20 @@ ctrl.persons | orderBy : 'age"
 JSON格式转换
 ctrl.person | json
 
+angularJS 模块依赖
+
+任何已有的angularJS服务(包括内置服务和自定义服务)都能通过将它定义为一种依赖来
+注入到其他服务、指令。过滤器或控制中去
+
+angularJS 自定义服务
+factory方式创建服务，作用是返回一个有属性有方法的对象，相当于：var f=myFactoryo（）
+在定义服务里注入内置服务示例，但不能注入$scope作用域对象
+
+service方法创建服务，相当于new的一个新对象：var s=new myService（）只要把属性和方法添加到this上才可以在controller里调用
+
+provder方法创建服务 只有provder是能传.config（）函数的service 如果想在service对象启用之前，先进行模块范围的配置，那就应该选择provider  需要注意的是：在config函数注入provder时，名字应该是providerName+Provider使用provider的优点就是，你可以在provider对象传递到应用程序的其他部分之前在app.config函数中对其进行修改
+当你使用Provider创建一个service时，唯一的可以在你控制器中访问的属性和方法是通过$get（）函数返回内容
+
 
 
 
