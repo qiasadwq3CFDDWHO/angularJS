@@ -1,0 +1,20 @@
+.home h1{
+	color: red;
+}
+
+.home input{
+	width: 100px;
+	height: 50px;
+	background-color: red;
+	font-size: 20px
+}
+
+.home .div1{
+	height: 200px;
+	background-color: yellow;
+}
+
+.home .div2{
+	height: 200px;
+	background-color: green;
+}

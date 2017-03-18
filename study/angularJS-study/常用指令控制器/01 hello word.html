@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="">
+	<!--ng-app是告诉程序这里是angularJS的程序入口，从html这里开始有angularJS来管理，
+	如果只想页面一部分使用angulaJS来管理的话，就在页面的那个元素上面去使用
+	ng-app指令 这就是angulajs的灵活指出，不过我们一般在html里面写
+	注意：暂时我们不要先给ng-app指定名字 如果指定的话会报错
+	Uncaught Error: [$injector:modulerr]
+		
+	-->
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	    <style type="text/css">
+	    	span{
+	    		color:red;
+	    		font-size:30px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<h1>AngulaJs hllo world</h1>
+		<h2 >hello:<span>{{1+2}}</span></h2>
+		<h2>Hello:<span>{{'world'}}</span></h2>
+		
+		
+		<hr/>
+		<h1>传统实现某个数据关联的程序</h1>
+		<input type="text" id="js_input"/>
+		<h2>JS:<span id="js_span"></span></h2>
+		
+		<hr/>
+		<h1>AngulaJS实现数据关联</h1>
+		<input type="text" ng-model="name"/>
+		<h2>AngulaJS:<span>{{name}}</span></h2>
+		<h2>AngulaJS:<span>{{name}}</span></h2>
+	</body>
+	<script type="text/javascript">
+		var js_input=document.querySelector("#js_input");
+		var js_span=document.querySelector("#js_span");
+		js_input.onkeyup=function(){
+			js_span.innerHTML=js_input.value;
+		}
+	</script>
+</html>

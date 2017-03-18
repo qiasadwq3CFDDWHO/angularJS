@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.class1{
+				background: pink;
+				
+			}
+			.class2{
+				background: blue;
+			}
+		</style>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		   <h1>遍历普通数组</h1>
+		   <ul>
+		   	<!-- ng-repeat: for..in的语法 for ..of的功能-->
+		   	<!--数组中如果有重复元素，需要加上 track by $index-->
+		   	 <li ng-class='{true:"class1",false:"class2"}[$even]' ng-repeat='item in ctrl.nameArr track by $index'>
+		   	 	序号:{{$index+1}}    姓名：{{item}}
+		   	 </li>
+		   </ul>
+		  <h1>遍历对象</h1>
+		  <ul>
+		  	<li ng-repeat="(key,value) in ctrl.personObj">
+		  		{{key}}:{{value}}
+		  	</li>
+		  </ul>
+		  <h1>遍历数组嵌套对象</h1>
+		  <ul>
+		  	<li ng-repeat="item in ctrl.personArr">
+		  		<!--<span>姓名：{{item.name}}</span>
+		  		<span>年龄：{{item.age}}</span>-->
+		  		<span ng-repeat="(key,value) in item">
+		  			{{value}}
+		  		</span>
+		  	</li>
+		  </ul>
+		  
+		  <h1>跨元素的遍历</h1>
+		  <table cellpadding="0" cellspacing="0" border="1">
+		  	 <tr ng-repeat-start="item in ctrl.movies">
+		  	 	<td>{{item.title}}</td>
+		  	 </tr>
+		  	 <tr>
+		  	 	<td>{{item.price}}</td>
+		  	 </tr>
+		  	 <tr ng-repeat-end>
+		  	 	<td>{{item.lable}}</td>
+		  	 </tr>
+		  </table>
+		
+		
+		
+		<script>
+			angular.module("myApp",[])
+				.controller('MainCtrl',[function(){
+					var self=this;
+					//普通数组
+					self.nameArr=['樱木花道','流川枫','赤木刚宪','赤木晴子',
+					             '宫城良田','三井寿','安西教练','流川枫'];
+					//对象
+					self.personObj={
+						name:'周星驰',
+						age:54
+					}
+					//数组内嵌套对象
+					self.personArr=[
+					
+					    {name:'詹姆斯',age:32},
+						{name:'卡哇伊',age:25},
+						{name:'哈登',age:27}
+					
+					
+					]
+						
+					//跨元素数据结构
+					self.movies=[
+					    {title:'NO1',lable:'生化危机',price:21},
+					    {title:"NO2",lable:'金刚狼',price:22},
+					    {title:'NO3',lable:'极限特工',price:31}
+					   ]
+					
+					
+					
+				}])
+		</script>
+	</body>
+</html>

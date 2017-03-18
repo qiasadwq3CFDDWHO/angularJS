@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				padding:0;
+				margin:0;
+				list-style: none;								
+				margin:0 auto;
+				margin-top:300px;
+			}
+			li{
+				
+				
+				
+				text-align:center;
+				
+			}
+			
+		</style>
+		<script type="text/javascript" src="lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller='MainCtrl as ctrl'>
+		<input value="科比" type='button' ng-click="ctrl.change('kebi')" />
+		<input value="詹姆斯" type='button' ng-click="ctrl.change('James')" />
+		<input value="罗斯" type='button' ng-click="ctrl.change('Rose')" />
+		<ul >
+			<li ng-repeat-start="item in ctrl.person">
+				<h1>姓名：</h1>{{item.name}}				
+			</li>
+			<li>
+				<h1>年龄：</h1>{{item.age}}
+			</li>
+			<li>
+				<h1>球队：</h1>{{item.team}}
+			</li>
+			<li ng-repeat-end>
+				<h1>简介：</h1>{{item.brief}}
+			</li>
+		</ul>
+		<script type="text/javascript">
+			angular.module('myApp',[])
+				.controller('MainCtrl',[function(){
+					var self=this;
+					self.James= [
+					     {name:'詹姆斯',
+					     age:32,
+					     team:'骑士',
+					     brief:'勒布朗·詹姆斯（LeBron James），1984年12月30日出生在美国俄亥俄州阿克伦，美国职业篮球运动员，司职小前锋，绰号“小皇帝”，效力于NBA克利夫兰骑士队。'
+					     }
+					  
+					  
+					
+					];
+					    
+					self.kebi= [
+					    {name:'科比',
+					     age:22,
+					     team:'湖人',
+					     brief:'勒布朗·詹姆斯（LeBron James），1984年12月30日出生在美国俄亥俄州阿克伦，美国职业篮球运动员，司职小前锋，绰号“小皇帝”，效力于NBA克利夫兰骑士队。'
+					     }
+					]
+					    
+					   
+					self.Rose= [
+					   {name:'罗斯',
+					     age:34,
+					     team:'公牛',
+					     brief:'勒布朗·詹姆斯（LeBron James），1984年12月30日出生在美国俄亥俄州阿克伦，美国职业篮球运动员，司职小前锋，绰号“小皇帝”，效力于NBA克利夫兰骑士队。'
+					     }
+							
+					];
+					
+					self.person=self.kebi;
+					  self.change = function (name){					  	
+						self.person=self[name];
+					};  
+					
+				}]);
+		</script>
+	</body>
+</html>

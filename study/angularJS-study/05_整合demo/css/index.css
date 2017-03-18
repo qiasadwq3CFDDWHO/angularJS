@@ -1,0 +1,50 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+ul,li{
+	list-style: none;
+}
+
+#footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 44px;
+	line-height: 44px;
+	background-color: wheat;
+	font-size: 20px;
+	width: 100%;
+}
+
+#footer ul{
+	display: flex;
+	justify-content: space-around;
+}
+
+/* footer不隐藏时候的样式 */
+.class1{
+	background-color: yellow;
+	/* calc运算函数 */
+	height: calc(100% - 44px);
+}
+
+/* footer隐藏时候的样式 */
+.class2{
+	background-color: orange;
+	height: 100%;
+}

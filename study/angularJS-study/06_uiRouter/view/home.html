@@ -1,0 +1,17 @@
+<div class="home">
+	<h1>{{ homeCtrl.pageName }}</h1>
+	<input type="button" value="subPage1" ui-sref=".subHome1"/>
+	<input type="button" value="subPage2" ui-sref=".subHome2"/>
+	<input type="button" value="subPage3" ui-sref=".subHome3"/>
+	<a href="#/subHome1">哈哈</a>
+	<div ui-view="subHomeView1" class="div1">
+		
+	</div>
+	<input type="button" value="subPage4" ui-sref=".subHome4"/>
+	<input type="button" value="subPage5" ui-sref=".subHome5"/>
+	<input type="button" value="subPage6" ui-sref=".subHome6"/>
+	<div ui-view="subHomeView2" class="div2">
+		
+	</div>
+	
+</div>

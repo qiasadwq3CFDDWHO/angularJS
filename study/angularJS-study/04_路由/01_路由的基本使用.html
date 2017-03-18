@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+		<script type="text/javascript" src="../lib/angular-route.js" ></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		
+		<a href="#/first">First Page</a>
+		<a href="#/second">Second Page</a>
+		
+		<!-- ng-view来指定路由切换的容器 -->
+		<!-- 在整个应用中最好就只有这一个ng-view -->
+		<div ng-view>
+			
+		</div>
+		
+		<script type="text/javascript">
+			//ngRoute是路由的模块，需要在这里引入
+			angular.module('myApp', ['ngRoute'])
+				.config(['$routeProvider', function ($routeProvider) {
+					$routeProvider
+						.when('/first',{
+							template : '<h1>First Page</h1>'
+						})
+						.when('/second', {
+							template : '<h1>Second Page</h1>'
+						})
+						.otherwise({
+							//如果不符合上诉路由规则，就走这里
+							//redirectTo 重定向到 /first
+							redirectTo : '/first'
+						})
+				}])
+				.controller('MainCtrl', [function () {
+					
+				}])
+			
+		</script>
+	</body>
+</html>

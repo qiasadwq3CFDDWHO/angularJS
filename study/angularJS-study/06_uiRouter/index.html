@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		
+		<!-- ui-router 使用的是ui-view 作为页面切换容器 -->
+		<div ui-view>
+			
+		</div>
+		
+		<!-- rootIsFooterShow 是一个全局变量，控制footer是否显示 -->
+		<div id="footer">
+			<ul>
+				<li><a href="#/home">首页</a></li>
+				<li><a href="#/market">闪送超市</a></li>
+				<li><a href="#/cart">购物车</a></li>
+				<li><a href="#/mine">我的</a></li>
+			</ul>
+		</div>
+
+		<!-- jquery要在angularJS之前引入 -->
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+		<script type="text/javascript" src="../lib/angular-css.js" ></script>
+		<script type="text/javascript" src="../lib/angular-ui-router.js" ></script>
+		<!--<script type="text/javascript" src="../lib/angular-route.js" ></script>-->
+		<script type="text/javascript" src="app.js" ></script>
+		<!-- 服务要在控制器之前引入 -->
+		<!--<script type="text/javascript" src="js/services.js" ></script>-->
+		<script type="text/javascript" src="js/controllers.js" ></script>
+	</body>
+</html>

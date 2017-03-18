@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	z	<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<input type="button" ng-click="ctrl.changePageFn();" 
+			value="{{ ctrl.flag }}" />
+			<!-- 当为true的时候显示ng-show -->
+		<h1 ng-show="ctrl.flag">show: {{ ctrl.flag }}</h1>
+			<!-- 当为false的时候显示ng-hide -->
+		<h1 ng-hide="ctrl.flag">hide: {{ ctrl.flag }}</h1>
+		
+		
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('MainCtrl', [function () {
+					var self = this;
+					//默认显示show的H1
+					self.flag = true;
+					
+					self.changePageFn = function () {
+						self.flag = !self.flag;
+					}
+					
+				}])
+		</script>
+	</body>
+</html>

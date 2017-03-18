@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<ul>
+	    			<li ng-repeat="item in ctrl.list">
+	    				{{ item.id }}=={{ item.label }}
+	    			</li>
+	    </ul>
+		<script type="text/javascript">
+			angular.module("myApp",[])
+				.controller('MainCtrl',['MyService',function(MyService){
+					var self=this;
+					self.list=MyService.show();
+					
+				}])
+				//通过service方式创建自定义服务，相当于new的一个对象：var s = new myService();，
+//				只要把属性和方法添加到this上才可以在controller里调用。
+				.service('MyService',[function(){
+					var self=this;
+					self.person=[
+					    { id : 1, label : 'Item 1'},
+					    { id : 2, label : 'Item 2'}
+					];
+					self.show=function(){
+						return self.person;
+					}
+					self.add=function(item){
+						self.person.push(item)
+					}
+				}])
+		</script>
+	</body>
+</html>

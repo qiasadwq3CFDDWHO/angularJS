@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<!--E(以元素形式出现页面)-->
+		
+		<runoob-directive></runoob-directive>
+		<!--A(以属性方式出现页面)-->
+		<div runoob-directive></div>
+	    <!--C(以class类方式出现页面)-->
+	    <div class="runoob-directive"></div>
+	    
+		<!--M(以注释形式写入页面 以下标签 后面必须加空格)-->
+		
+		<!-- directive: runoob-directive -->
+		<script>
+			var app=angular.module('myApp',[]);
+//			指令的命名方式,如果都是小写的话一切正常使用
+//			如果名字有大写的话,从大写字母的位置开始用"-"分隔开
+//			可以不用转换大小写 但必须分隔开
+//			列入  anBsa转换成 an-bsa
+            
+			app.controller('MainCtrl',[function(){
+					var self=this;
+					self.person={
+						name:'董华军'
+					}
+			        }]).
+					directive("runoobDirective",[function(){
+				return{
+					  template : "<h1>我叫{{ctrl.person.name}}</h1>",
+					  restrict:'ECMA',
+					  //restrict restrict是一个可选的参数
+					  //E(以元素形式出现页面) A(以属性方式出现页面) C(以class类方式出现页面)
+					  //M(以注释形式写入页面) 
+					  //replace 替换成H1标签
+					  replace:true				 
+// 				      scope: true // 继承父级作用域并创建指令自己的作用域
+//				      scope: {}, // 创建指令自己的独立作用域，与父级毫无关系
+                       //可以加载页面
+//					  templateUrl:'footer.html',
+				}
+			}])
+		</script>
+	</body>
+</html>

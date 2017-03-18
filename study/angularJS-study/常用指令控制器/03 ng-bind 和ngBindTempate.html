@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div ng-init="name='白凤九';age=70000;">
+			<!--{{}}语法和ng-bind实现功能一模一样 但是{{}}需要在
+			angularJS文件加载完后使用，否则会出现闪现效果，影响用户体验-->
+			<!--<h1>{{name}}</h1>
+			
+			<h1 ng-bind="name"></h1>
+			<h1 ng-bind="name + age"></h1>-->
+			<!--<h1>{{name+age}}</h1>
+			<h1>{{name}} {{age}}</h1>-->
+			<!--还可以用ng-bind-template
+		    
+			<h1 ng-bind-template="{{name+'and'+age}}"></h1>-->
+			<h1 ng-bind-template="{{name +age}}"></h1>
+			<h1 ng-bind-template="{{name}}and{{age}}"></h1>
+		</div>
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript" src="../lib/angular.min.js"></script>		
+	</body>
+</html>

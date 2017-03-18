@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body>
+		<!--定义应用的控制器对象  形成一个作用域-->
+		<div ng-controller="MainCtrl">
+			<h1>{{name}}</h1>
+			<div>
+				{{name}}
+				<!--由于 otherCtrl 作用域没有name属性 由此会去上级寻找继承上级 MainCtrl的name属性-->
+				<div ng-controller="otherCtrl">
+					<h1>{{person.name}}</h1>
+					<h1>{{name}}</h1>
+		       </div>
+			</div>
+			<input type="text" ng-model="name" ng-keyup="fn()" />
+			<h1>全局：{{userName}}</h1>
+		</div>
+		<!--<div ng-controller="otherCtrl">
+			<h1>{{person.name}}</h1>
+			<h1>{{name}}</h1>
+		</div>-->
+		<script type="text/javascript">
+			angular.module('myApp',[])
+			//使用依赖注入的原理注入$scope,才可以使用
+				.controller('MainCtrl',['$scope','$rootScope',function($scope,$rootScope){
+//					$scope 对象就代表了这个作用域的数据实体
+					$scope.name="素素";
+					//给 全局作用域绑定某个变量，任何控制器下都可以访问到
+					$rootScope.userName="白浅浅";
+					//绑定方法
+					$scope.fn=function(){
+						console.log($scope.name)
+					}
+					
+				}])
+				.controller('otherCtrl',['$scope',function($scope){
+					
+					$scope.person={
+						name:"司音上先",
+						age:18
+					}
+				}])
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<!--ng-controller:这里是指控制器所管理的范围，这个控制器的名字叫MainCtrl,
+	注意：这里指定后，下面一定要生成该控制器，否则会 报错-->
+	<body ng-controller='MainCtrl'>
+		<script type="text/javascript">
+//			创建主入口实例
+//			myApp是ng-app的值,[]是依赖列表
+//			var app=angular.module("myApp",[]);
+//			console.log(app);
+			
+			//创建控制器
+//			MainCtrl是控制器的名字   function 是实现逻辑
+//			app.controller('MainCtrl',function(){
+//				console.log("我是控制器")
+//			});
+			//创建控制器 2
+			//这种方式是以后我们推荐写的方式 因为我们以后需要用一些其他的前端构建工具
+			//对代码进行压缩打包，上面那种方式就会容易出现问题，下面这种就不会
+//			
+//			app.controller("MainCtrl",[function(){
+//				console.log("我是控制器之液化");
+//			}])
+//			//以上都可以，正常我们基本都写链式语法 
+			angular.module("myApp",[])
+				.controller('MainCtrl',[function(){
+					console.log("我是控制器之离境")
+				}])
+		</script>
+	</body>
+</html>

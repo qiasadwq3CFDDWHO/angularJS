@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<input type="button" value="page1" ng-click="ctrl.changePage('page1');" />
+		<input type="button" value="page2" ng-click="ctrl.changePage('page2');" />
+		<input type="button" value="page3" ng-click="ctrl.changePage('page3');" />
+		<input type="button" value="pageOther" ng-click="ctrl.changePage('otherPage');" />
+		
+		<div ng-switch on="ctrl.pageName">
+			<h1 ng-switch-when="page1">{{ ctrl.pageName }}</h1>
+			<h1 ng-switch-when="page2">{{ ctrl.pageName }}</h1>
+			<h1 ng-switch-when="page3">{{ ctrl.pageName }}</h1>
+			<h1 ng-switch-default>其他页面</h1>
+		</div>
+		
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('MainCtrl', [function () {
+					var self = this;
+					//初始化一个页面名字变量
+					self.pageName = 'page1';
+					
+					//切换页面的方法
+					self.changePage = function (pageName) {
+						self.pageName = pageName;
+					}
+				}])
+		</script>
+	</body>
+</html>

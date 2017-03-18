@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as mainCtrl">
+		<h1>Tab页切换，保存所切换的值</h1>
+		
+		<input type="button" value="FirstPage " ng-click="mainCtrl.changenFn('first')"/>
+		<input type="button" value="SecondPage " ng-click="mainCtrl.changenFn('second')"/>
+	    <div ng-switch on="mainCtrl.tab">
+	    	<div ng-switch-when='first' ng-controller="SubCtrl as subCtrl">
+	    		<h2>第一个页面</h2>
+	    		<ul>
+	    			<li ng-repeat="item in subCtrl.list">
+	    				{{ item.id }}=={{ item.label }}
+	    			</li>
+	    		</ul>
+	    		<input type="button" value="添加项目" ng-click="subCtrl.add()" />
+	    	</div>
+	    
+	    
+
+	    	<div ng-switch-when='second' ng-controller="SubCtrl as subCtrl">
+	    		<h2>第二个页面</h2>
+	    		<ul>
+	    			<li ng-repeat="item in subCtrl.list">
+	    				{{ item.id }}=={{ item.label }}
+	    			</li>
+	    		</ul>
+	    		<input type="button" value="添加项目" ng-click="subCtrl.add()" />
+	    	</div>
+	    
+	    </div>
+	    
+	    <script type="text/javascript">
+			angular.module("myApp",[])
+				.controller('MainCtrl',[function(){
+					var self=this;
+					//默认切换显示第一页
+					self.tab="first";
+					
+					//切换页面的方法
+					self.changenFn=function(pageName){
+						self.tab=pageName;
+					}
+					
+				}])
+				.controller('SubCtrl',[function(){
+					var self=this;
+					
+					//数据列表
+					self.list=[
+					  { id : 1, label : 'Item 1'},
+					  { id : 2, label : 'Item 2'}
+					]
+					
+					//添加项目方法
+					self.add=function(){
+						self.list.push({
+							id : self.list.length + 1,
+							label : 'Item' +(self.list.length + 1)
+						})
+					}
+				}])
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<ul>
+			<li ng-repeat="item in ctrl.menus">
+				{{ item.activity.name }}
+			</li>
+		</ul>
+		<script type="text/javascript" >
+			angular.module('myApp',[])
+			//注入GoodsService
+				.controller('MainCtrl',['GoodsService',function(GoodsService){
+					var self=this;
+					GoodsService.getGoods().then(function(response){
+						console.log(response);
+						console.log(response.data.data.menu);
+						//关联页面
+						self.menus= response.data.data.menu
+					},function(response){
+						console.log("---erro---");
+						console.log(response)
+					})
+//					self.menus=
+					
+				}])
+				//创建服务
+				//$http 是angular中处理网络请求的内置服务，依赖注入到GoodsService中
+				.factory('GoodsService',['$http',function ($http){
+					return {
+						//获取商品列表
+						getGoods : function(){
+							//切忌不要在这里用success,这里要直接返回，返回值是一个promise对象
+							return $http.get('http://www.vrserver.applinzi.com/aixianfeng/apihome.php');
+						      
+						}
+					}
+				}])
+		</script>
+	</body>
+</html>

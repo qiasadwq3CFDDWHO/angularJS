@@ -1,0 +1,9 @@
+<div class="home">
+	<h1>{{ homeCtrl.pageName }}</h1>
+	<ul>
+		<li style="padding: 20px;" ng-repeat="person in homeCtrl.list | orderBy : 'age' : true">
+			<!-- 详情页面 -->
+			<a ng-href="#/detail/{{person.personId}}">{{ person.name }} === {{ person.age }}</a>  
+		</li>
+	</ul>
+</div>

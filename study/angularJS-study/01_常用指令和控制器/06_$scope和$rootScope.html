@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body>
+		
+		<div ng-controller="MainCtrl">
+			<h1>{{ name }}</h1>
+			<input type="text" ng-model="name" ng-keyup="fn();" />
+			<h1>全局： {{ userName }}</h1>
+		</div>
+		
+		<hr />
+		
+		<div ng-controller="otherCtrl">
+			<h1>{{ person.name }}</h1>
+			<h1>全局： {{ userName }}</h1> 
+		</div>
+		
+		<script type="text/javascript">
+			
+			angular.module('myApp', [])
+			//使用依赖注入的原理注入$scope，才可以使用
+				.controller('MainCtrl', ['$scope', '$rootScope',
+						function ($scope, $rootScope) {
+					$scope.name = "素素";
+//					var name = '素素';
+
+//					给全局作用域绑定某个变量，任何控制器下都可以访问到
+					$rootScope.userName = '白浅浅';
+					
+					//办定方法
+					$scope.fn = function () {
+						console.log($scope.name);
+					}
+
+				}])
+				.controller('otherCtrl', ['$scope', function ($scope) {
+					$scope.person = {
+						name : '司音上仙',
+						age : 18
+					}
+				}])
+			
+		</script>
+	</body>
+</html>

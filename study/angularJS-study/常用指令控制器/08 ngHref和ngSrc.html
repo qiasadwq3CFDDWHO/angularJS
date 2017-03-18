@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller='MainCtrl as ctrl'>
+		<div>
+			<a ng-href="{{ctrl.obj.href}}">
+				{{ctrl.obj.href}}
+			</a>
+			<img ng-src="{{ctrl.obj.src}}"
+		</div>
+		<script>
+			angular.module("myApp",[])
+		      .controller('MainCtrl',[function(){
+		      	   var self=this;
+		      	   self.obj={
+		      	   	href:'http://www.baidu.com',
+		      	   	src:'http://img4.imgtn.bdimg.com/it/u=865065690,633360136&fm=23&gp=0.jpg'
+		      	   }
+		      }])
+		</script>
+	</body>
+</html>

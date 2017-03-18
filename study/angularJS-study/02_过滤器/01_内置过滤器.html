@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<h1>货币格式化处理</h1>
+		<!-- currency默认是美元 -->
+		<h2>{{ ctrl.money | currency }}</h2>
+		<h2>{{ ctrl.money | currency : 'RMB￥' }}</h2>
+		
+		<h1>字母大小写转换</h1>
+		<h2>{{ ctrl.str | uppercase }}</h2>
+		<h2>{{ ctrl.str }}</h2>
+		<h2>{{ 'ABC' | lowercase }}</h2>
+		
+		<h1>限制显示长度</h1>
+		<!-- 管道符可以配合使用 -->
+		<h2>{{ ctrl.str | limitTo : 2 | uppercase }}</h2>
+		<h2>{{ (ctrl.arr | limitTo : 2)[1] }}</h2>
+		
+		<h1>给数字设置千分位</h1>
+		<h2>{{ 1234567 | number }}</h2>
+		<!-- 保留小数点两位 -->
+		<h2>{{ 1234567 | number : 2 }}</h2>
+		<!-- 会四舍五入 -->
+		<h2>{{ 1234567.898 | number : 2 }}</h2>
+		
+		<h1>日期格式化处理</h1>
+		<h2>{{ ctrl.date | date : 'yyyy-MM-dd hh:mm:ss EEEE' }}</h2>
+		
+		<h1>数组中无对象排序</h1>
+		<!-- 默认是升序排序 -->
+		<h2>{{ ctrl.arr | orderBy }}</h2>
+		<!-- 降序需要添加order : true -->
+		<h2>{{ ctrl.arr | orderBy : order : true }}</h2>
+		<!-- 配合ng-repeat使用 -->
+		<ul>
+			<li ng-repeat="item in ctrl.arr | orderBy">
+				{{ item }}
+			</li>
+		</ul>
+		
+		<h1>数组中有对象的排序（排序的是对象的某个属性）</h1>
+		<h2>{{ ctrl.persons | orderBy : 'age' }}</h2>
+		
+		<h1>JSON格式转换</h1>
+		<h2>{{ ctrl.persons | json }}</h2>
+		
+		<h1>条件过滤加排序小功能</h1>
+		过滤条件：<input type="text" ng-model="ctrl.queryFilter" />
+		排序条件：
+			<select ng-model="ctrl.orderType">
+				<option value="name">按照名字排序</option>
+				<option value="age">按照年龄排序</option>
+			</select>
+		数据展示：
+			<ul>
+				<!-- 利用filter进行模糊过滤, 后面接着过滤条件 -->
+				<li ng-repeat="item in ctrl.persons | filter : ctrl.queryFilter 
+						| orderBy : ctrl.orderType : true">
+					age : {{ item.age }} name : {{ item.name }}
+				</li>
+			</ul>
+		
+		
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('MainCtrl', [function () {
+					var self = this;
+					
+					self.money = 12345;
+					self.str = 'abcde';
+					self.arr = [33, 22, 44, 55];
+					self.persons = [
+						{ name : 'b', age : 18 },
+						{ name : 'ab', age : 15 },
+						{ name : 'bb', age : 20 },
+						{ name : 'ac', age : 14 },
+						{ name : 'bc', age : 19 },
+						{ name : 'abc', age : 21 },
+						{ name : 'abb', age : 22 },
+					]
+					
+					self.date = new Date().getTime();
+					
+				}])
+//				console.log(new Date().getTime());
+		</script>
+	</body>
+</html>

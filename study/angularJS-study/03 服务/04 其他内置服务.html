@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js"></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		<h1>{{ ctrl.num }}</h1>
+		<h1>{{ ctrl.count }}</h1>
+		
+		
+		
+		<script type="text/javascript">
+			angular.module('myApp',[])
+			//注入$timeout是angularJS的内置延时服务器，通过依赖注入来使用
+				.controller("MainCtrl",['$timeout','$interval','$location',function($timeout,$interval,$location){
+					var self=this;
+					$timeout(function(){
+						self.num="翻滚吧，阿信";
+					},3000);
+					self.count = 0;
+					var timerId=$interval(function(){
+						self.count++;
+						if(self.count==5){
+							self.count=self.count + "ok";
+							//停止定时器
+							$interval.cancel(timerId);
+						}
+						
+					},1000)
+					
+					//原生的定时能实现延时效果 也能赋值 但和页面绑定是失去联系的
+//					setTimeout(function(){
+//						self.num="闪现出来";
+//						console.log('FDSDFFDS')
+//					},3000)
+                   console.log($location);
+				}])
+		</script>
+	</body>
+</html>

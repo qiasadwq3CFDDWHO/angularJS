@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller="MainCtrl as ctrl">
+		
+		<!-- 标签形式 -->
+		<di-Jun></di-Jun>
+		<!-- 属性形式 -->
+		<div di-Jun></div>
+		<!-- class形式 -->
+		<div class="di-Jun"></div>
+		<!-- 注释形式 -->
+		<!-- directive:di-Jun -->
+		
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('MainCtrl', [function () {
+					var self = this;
+					self.person = {
+						name : '东华帝君'
+					}
+				}])
+				//创建指令
+				/*
+				 * 指令的命名如果都是小写字母的话，使用的时候一切正常
+				 * 如果指令名字有大写字母的话，从大写字母的位置开始用'-'分隔开
+				 * 例如：diJun 转换成 di-Jun
+				 */
+				.directive('diJun', [function () {
+					return {
+						//默认支持标签和属性形式，如果想要都支持就都指定上
+						//相应的代表字母。
+						restrict : 'ECMA',
+						//替换 (写注释形式必须要加上这个，否则不生效)
+						replace : true,
+						template : '<h1>我叫{{ ctrl.person.name }}</h1>'
+//						templateUrl : 'footer.html'
+					}
+				}])
+		</script>
+	</body>
+</html>
